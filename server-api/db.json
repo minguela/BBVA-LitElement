@@ -1,0 +1,31 @@
+{
+  "users": [
+    {
+      "id": "1",
+      "email": "bbva@bbva.com",
+      "password": "12345678",
+      "name": "first name 1",
+      "last_name": "last name 1",
+      "last_connection": "2021-01-19T17:08:22.327Z",
+      "logged_in": true
+    },
+    {
+      "id": "2",
+      "email": "bbva2@bbva.com",
+      "password": "12345678",
+      "name": "first name 2",
+      "last_name": "last name 2",
+      "last_connection": null,
+      "logged_in": false
+    },
+    {
+      "id": "3",
+      "email": "bbva3@bbva.com",
+      "password": "12345678",
+      "name": "first name 3",
+      "last_name": "last name 3",
+      "last_connection": "Sun Jan 15 2021 13:50:48 GMT+0100",
+      "logged_in": true
+    }
+  ]
+}

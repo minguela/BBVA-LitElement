@@ -1,0 +1,13 @@
+{
+  "name": "bbva-server-users-api",
+  "version": "1.0.0",
+  "description": "users api for login challenge",
+  "scripts": {
+    "start": "json-server --watch db.json"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "json-server": "^0.15.1"
+  }
+}
