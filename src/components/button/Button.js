@@ -8,6 +8,7 @@ export class Button extends LitElement {
       class: { type: String },
     };
   }
+
   static get styles() {
     return css`
       :host {
@@ -16,15 +17,15 @@ export class Button extends LitElement {
         text-align: center;
       }
       :host(.primary) button {
-        width: var(--btn-primary-width);
-        padding: var(--btn-primary-padding);
-        border: var(--btn-primary-border);
-        border-radius: var(--btn-primary-border-radius);
-        color: var(--btn-primary-color);
-        background-color: var(--btn-primary-background-color);
+        width: 100%;
+        padding: 5px 0;
+        border: none;
+        border-radius: 4px;
+        color: white;
+        background-color: #14549c;
       }
       :host(.secondary) button {
-        width: var(--btn-secondary-width);
+        width: 120px;
       }
     `;
   }
