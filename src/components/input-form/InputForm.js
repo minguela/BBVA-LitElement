@@ -16,8 +16,9 @@ export class InputForm extends LitElement {
       :host {
         position: relative;
         display: block;
-        padding-bottom: 20px;
         max-width: 150px;
+        padding-bottom: 20px;
+        margin: 0 auto;
       }
       .form-field {
         display: block;
