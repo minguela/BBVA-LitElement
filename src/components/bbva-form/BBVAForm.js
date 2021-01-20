@@ -7,21 +7,33 @@ export class BBVAForm extends LitElement {
   static get properties() {
     return {
       image: { type: Boolean },
+      email: { type: String },
+      password: { type: String },
+      invalid: { type: Boolean },
     };
   }
 
   static get styles() {
     return css`
+      :host {
+        width: 100%;
+        text-align: center;
+      }
       svg {
         display: block;
         width: 80px;
         margin: 0 auto 50px;
+      }
+      p {
+        margin: 0;
+        color: red;
       }
     `;
   }
 
   constructor() {
     super();
+    this.invalid = false;
     this.addEventListener('values', this.getValues);
   }
 
@@ -57,19 +69,20 @@ export class BBVAForm extends LitElement {
     }
     return html`${image}
       <form id="submitForm">
-        <input-form text="Email" type="email" required invalid></input-form>
         <input-form
-          text="Password"
-          type="password"
+          text="Email"
+          type="email"
           required
-          invalid
+          text-error="Enter correct email"
         ></input-form>
+        <input-form text="Password" type="password" required></input-form>
         <button-component
           @click="${this._handleForm}"
           class="primary"
           text="Log In"
           type="submit"
         ></button-component>
+        <p ?hidden="${!this.invalid}">Please enter correct email/password</p>
       </form>`;
   }
 
@@ -93,7 +106,7 @@ export class BBVAForm extends LitElement {
     this._inputForm.forEach(element => {
       if (element.hasAttribute('invalid')) validForm = false;
     });
-    if (validForm) {
+    if (validForm && this.email && this.password) {
       await fetch(`${constants.api}/users`)
         .then(response => response.json())
         .then(data => {
@@ -103,6 +116,7 @@ export class BBVAForm extends LitElement {
           userValid = userValid.length === 1 ? userValid[0] : undefined;
         });
       if (userValid) {
+        this.invalid = false;
         await fetch(`${constants.api}/users/${userValid.id}`, {
           method: 'PATCH',
           headers: {
@@ -114,6 +128,8 @@ export class BBVAForm extends LitElement {
           }),
         });
         window.location = `${constants.usersPage}?id=${userValid.id}`;
+      } else {
+        this.invalid = true;
       }
     }
   }

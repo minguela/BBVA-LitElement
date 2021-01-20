@@ -1,4 +1,4 @@
-import { LitElement, html, css } from 'lit-element';
+import { LitElement, html } from 'lit-element';
 import '../counter/counter-up.js';
 import '../button/button-component.js';
 import '../title/title-component.js';
@@ -40,7 +40,7 @@ export class BBVAUser extends LitElement {
       ></button-component>`;
   }
 
-  redirect() {
+  static redirect() {
     window.location = `${constants.loginPage}`;
   }
 

@@ -6,6 +6,7 @@ export class Paragraph extends LitElement {
       text: { type: String },
     };
   }
+
   static get styles() {
     return css`
       :host {
