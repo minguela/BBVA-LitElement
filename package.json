@@ -8,20 +8,23 @@
     "deepmerge": "^4.2.2",
     "eslint": "^6.1.0",
     "eslint-config-prettier": "^6.11.0",
+    "eslint-plugin-import": "^2.22.1",
+    "eslint-plugin-lit": "^1.3.0",
+    "eslint-plugin-lit-a11y": "^1.0.1",
+    "eslint-plugin-wc": "^1.2.0",
     "husky": "^1.0.0",
     "lint-staged": "^10.0.0",
     "prettier": "^2.0.4",
     "rimraf": "^2.6.3",
-    "rollup": "^2.3.4",
-    "rollup-plugin-multi-entry": "^2.1.0"
+    "rollup": "^2.3.4"
   },
   "scripts": {
     "lint": "eslint --ext .js,.html . --ignore-path .gitignore && prettier \"**/*.js\" --check --ignore-path .gitignore",
     "test": "web-test-runner --coverage",
     "test:watch": "web-test-runner --watch",
-    "build": "npm run build:login && npm run build:user", 
+    "build": "npm run build:login && npm run build:user",
     "build:login": "rimraf dist/login && rollup -c rollup.login.config.js",
-    "build:user": "rimraf dist/user && rollup -c rollup.user.config.js", 
+    "build:user": "rimraf dist/user && rollup -c rollup.user.config.js",
     "start": "web-dev-server --root-dir src --app-index pages/login/index.html --watch --open",
     "start:api": "cd server-api/ && npm run start"
   },
