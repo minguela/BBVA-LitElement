@@ -11,6 +11,7 @@ export class CounterUp extends LitElement {
       seconds: { type: String },
     };
   }
+
   static get styles() {
     return css`
       :host {

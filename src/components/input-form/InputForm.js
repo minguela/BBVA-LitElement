@@ -6,24 +6,39 @@ export class InputForm extends LitElement {
       type: { type: String },
       text: { type: String },
       required: { type: Boolean },
+      invalid: { type: Boolean, reflect: true },
+      textError: { type: String, attribute: 'text-error' },
     };
   }
 
   static get styles() {
     return css`
       :host {
-        margin-bottom: 20px;
+        position: relative;
         display: block;
+        padding-bottom: 20px;
+        max-width: 150px;
       }
       .form-field {
         display: block;
       }
       input {
+        max-width: 150px;
+        width: 100%;
+        padding: 1px 0;
         border: none;
         border-bottom: 1px solid grey;
       }
       .error {
         border-bottom: 1px solid red;
+      }
+      p {
+        position: absolute;
+        top: 22px;
+        padding-left: 2px;
+        margin: 0;
+        font-size: 12px;
+        color: red;
       }
     `;
   }
@@ -33,6 +48,8 @@ export class InputForm extends LitElement {
     this.type = 'text';
     this.text = 'placeholder';
     this.required = false;
+    this.invalid = false;
+    this.textError = '';
   }
 
   render() {
@@ -43,6 +60,7 @@ export class InputForm extends LitElement {
         aria-label="${this.text}"
         @blur="${this.handleState}"
       />
+      <p ?hidden="${!this.invalid}">${this.textError}</p>
     </div>`;
   }
 
@@ -50,25 +68,13 @@ export class InputForm extends LitElement {
     this.input = this.shadowRoot.querySelector('input');
   }
 
-  validEmail(value) {
+  static validEmail(value) {
     const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
     return re.test(String(value).toLowerCase());
   }
 
-  validPassword(value) {
-    return value.length >= 8;
-  }
-
-  get invalid() {
-    return this.hasAttribute('invalid');
-  }
-
-  set invalid(value) {
-    if (!!value) {
-      this.setAttribute('invalid', '');
-    } else {
-      this.removeAttribute('invalid');
-    }
+  static validPassword(value) {
+    return value.length >= 0;
   }
 
   handleState(event) {

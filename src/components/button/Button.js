@@ -17,6 +17,7 @@ export class Button extends LitElement {
         text-align: center;
       }
       :host(.primary) button {
+        max-width: 150px;
         width: 100%;
         padding: 5px 0;
         border: none;
