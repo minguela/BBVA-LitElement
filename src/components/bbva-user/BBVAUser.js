@@ -24,9 +24,9 @@ export class BBVAUser extends LitElement {
   async firstUpdated() {
     const params = new URLSearchParams(window.location.search);
     const id = params.get('id');
-    if (!id) this.redirect();
+    if (!id) BBVAUser.redirect();
     await this._getUser(id);
-    if (!this.user || !this.user.logged_in) this.redirect();
+    if (!this.user || !this.user.logged_in) BBVAUser.redirect();
   }
 
   render() {
@@ -54,7 +54,7 @@ export class BBVAUser extends LitElement {
         logged_in: false,
       }),
     });
-    this.redirect();
+    BBVAUser.redirect();
   }
 
   async _getUser(id) {
