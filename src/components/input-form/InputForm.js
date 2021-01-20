@@ -82,12 +82,15 @@ export class InputForm extends LitElement {
     if (!event.target.value && this.required) {
       this.invalid = true;
       this.input.classList.add('error');
-    } else if (this.type === 'email' && !this.validEmail(event.target.value)) {
+    } else if (
+      this.type === 'email' &&
+      !InputForm.validEmail(event.target.value)
+    ) {
       this.invalid = true;
       this.input.classList.add('error');
     } else if (
       this.type === 'password' &&
-      !this.validPassword(event.target.value)
+      !InputForm.validPassword(event.target.value)
     ) {
       this.invalid = true;
       this.input.classList.add('error');
